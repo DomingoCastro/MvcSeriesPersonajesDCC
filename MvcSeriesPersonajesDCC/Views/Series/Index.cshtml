@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MvcSeriesPersonajesDCC.Models.Series>
+
+@*Modificamos parte del código para hacer que muestre la imagen 
+y agregamos un estilo algo más agradable a la vista.
+Aparte le agregamos funcionalidad al botón detalles y personajes
+*@
+<h1>Listado de Series</h1>
+
+<p>
+    <a asp-controller="Series" asp-action="Create"
+       class="btn btn-outline-success"> Crear Serie</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSerie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anyo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSerie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <img src="@item.Imagen" width="200px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anyo)
+            </td>
+            <td>
+             <a asp-controller="Series" asp-action="Details" asp-route-id="@item.IdSerie"
+             class="btn btn-outline-info"> Detalles</a>
+             <a asp-controller="Series" asp-action="Characters" asp-route-id="@item.IdSerie"
+             class="btn btn-outline-success"> Personajes</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

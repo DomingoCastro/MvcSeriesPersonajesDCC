@@ -1,0 +1,19 @@
+﻿@model MvcSeriesPersonajesDCC.Models.Series
+
+@*Creamos una vista Card con bootscrap para que sea más agradable 
+y agregamos un boton para volver atrás a la lista*@
+<h1>Detalles de @Model.Nombre</h1>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="@Model.Imagen" alt="Card image cap">
+  <div class="card-body">
+        <h4 class="card-title">Titulo: </h4>
+        <h5>@Model.Nombre </h5>
+    <p class="card-text"><h4>Año: </h4></p>
+        <h5>@Model.Anyo</h5>
+  </div>
+</div>
+<div>
+<a asp-controller="Series"  asp-action="Index"
+class="btn btn-outline-dark"> Listado</a>
+</div>
