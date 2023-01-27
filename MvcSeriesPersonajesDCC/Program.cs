@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Creamos la conexion a la BBDD con builder.configuration y 
+// agregamos el repository y el seriescontext para poder ser utilizado
 string connectionString = builder.Configuration.GetConnectionString("SqlSeries");
 builder.Services.AddTransient<RepositorySeries>();
 builder.Services.AddDbContext<SeriesContext>(options => options.UseSqlServer(connectionString));
@@ -26,7 +28,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+//Modificamos  en Pattern el controller y la action para que al inicializar salga el listado
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Series}/{action=Index}/{id?}");
